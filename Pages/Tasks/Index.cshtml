@@ -24,24 +24,32 @@
                 <th>Actions</th>
             </tr>
         </thead>
+
         <tbody>
-            @foreach (var item in Model.TaskItems)
-            {
-                <tr>
-                    <td>@item.TaskID</td>
-                    <td>@item.Title</td>
-                    <td>@item.Description</td>
-                    <td>@(item.IsCompleted ? "Yes" : "No")</td>
-                    <td>@Html.DisplayFor(modelItem => item.DueDate)</td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Task Actions">
-                            <a asp-page="Done" asp-route-id="@item.TaskID" class="btn btn-sm btn-primary">Done</a>
-                            <a asp-page="Edit" asp-route-id="@item.TaskID" class="btn btn-sm btn-secondary">Edit</a>
-                            <a asp-page="Delete" asp-route-id="@item.TaskID" class="btn btn-sm btn-danger">Delete</a>
-                        </div>
-                    </td>
-                </tr>
-            }
+                @if (Model.TaskItems != null)
+                {
+                    @foreach (var item in Model.TaskItems)
+                    {
+                    <tr>
+                        <td>@item.TaskID</td>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@(item.IsCompleted ? "Yes" : "No")</td>
+                        <td>@Html.DisplayFor(modelItem => item.DueDate)</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Task Actions">
+                                <a asp-page="Done" asp-route-id="@item.TaskID" class="btn btn-sm btn-primary">Done</a>
+                                <a asp-page="Edit" asp-route-id="@item.TaskID" class="btn btn-sm btn-secondary">Edit</a>
+                                <a asp-page="Delete" asp-route-id="@item.TaskID" class="btn btn-sm btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="6">No tasks found.</td></tr>
+                }
         </tbody>
     </table>
 </div>

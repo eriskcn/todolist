@@ -24,6 +24,6 @@ namespace todolist.Models
         [StringLength(255)]
         public string Email { get; set; }
 
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
     }
 }
