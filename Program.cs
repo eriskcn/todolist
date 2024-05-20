@@ -1,8 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using todolist.Data;
 using todolist.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // Add this line
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
