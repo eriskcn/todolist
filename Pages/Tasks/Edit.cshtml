@@ -1,0 +1,29 @@
+﻿@page "{id:int}"
+@model todolist.Pages.Tasks.EditModel
+@{
+    ViewData["Title"] = "Edit Task";
+}
+
+<h1 class="mb-4">Edit Task</h1>
+
+<div class="container">
+    <form method="post">
+        <input type="hidden" asp-for="TaskItem.TaskID" />
+        <div class="form-group mt-2">
+            <label asp-for="TaskItem.Title" class="control-label"></label>
+            <input asp-for="TaskItem.Title" class="form-control mt-1" />
+            <span asp-validation-for="TaskItem.Title" class="text-danger mt-1"></span>
+        </div>
+        <div class="form-group mt-2">
+            <label asp-for="TaskItem.Description" class="control-label"></label>
+            <input asp-for="TaskItem.Description" class="form-control mt-1" />
+            <span asp-validation-for="TaskItem.Description" class="text-danger mt-1"></span>
+        </div>
+        <div class="form-group mt-2">
+            <label asp-for="TaskItem.DueDate" class="control-label"></label>
+            <input asp-for="TaskItem.DueDate" class="form-control mt-1" />
+            <span asp-validation-for="TaskItem.DueDate" class="text-danger mt-1"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Save</button>
+    </form>
+</div>
