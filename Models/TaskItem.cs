@@ -12,7 +12,7 @@ namespace todolist.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TaskID { get; set; }
 
-        [ForeignKey("UserID")]
+        [ForeignKey("User")]
         public int UserID { get; set; }
 
         public string Title { get; set; }
@@ -24,6 +24,7 @@ namespace todolist.Models
         public DateTime DueDate { get; set; }
 
         public DateTime DateCreated { get; set; } = DateTime.Now;
+        public ICollection<TaskFile> TaskFiles { get; set; } = new List<TaskFile>();
     }
 
 }

@@ -9,5 +9,17 @@ namespace todolist.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<TaskItem> TaskItems { get; set; }
+        public DbSet<TaskFile> TaskFiles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<TaskItem>()
+                .HasMany(t => t.TaskFiles)
+                .WithOne(tf => tf.TaskItem)
+                .HasForeignKey(tf => tf.TaskID)
+                .OnDelete(DeleteBehavior.Cascade); 
+        }
     }
 }

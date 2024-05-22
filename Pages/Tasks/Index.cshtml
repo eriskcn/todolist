@@ -21,6 +21,7 @@
                 <th>Description</th>
                 <th>Is Complete</th>
                 <th>Due Date</th>
+                <th>Files</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -37,6 +38,21 @@
                         <td>@(item.IsCompleted ? "Yes" : "No")</td>
                         <td>@Html.DisplayFor(modelItem => item.DueDate)</td>
                         <td>
+                            @if (item.TaskFiles != null && item.TaskFiles.Count > 0)
+                            {
+                                <ul>
+                                    @foreach (var file in item.TaskFiles)
+                                    {
+                                        <li><a href="@file.FilePath">@file.FileName</a></li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <span>No files</span>
+                            }
+                        </td>
+                        <td>
                             <div class="btn-group" role="group" aria-label="Task Actions">
                                 <a asp-page="Done" asp-route-id="@item.TaskID" class="btn btn-sm btn-primary">Done</a>
                                 <a asp-page="Edit" asp-route-id="@item.TaskID" class="btn btn-sm btn-secondary">Edit</a>
@@ -48,7 +64,7 @@
                 }
                 else
                 {
-                    <tr><td colspan="6">No tasks found.</td></tr>
+                    <tr><td colspan="7">No tasks found.</td></tr>
                 }
         </tbody>
     </table>
